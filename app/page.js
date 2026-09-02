@@ -3,10 +3,10 @@ import {useEffect,useMemo,useState} from 'react';
 import {Search,LogOut,Clock3,ShieldCheck,Plus,FileEdit,Inbox,LoaderCircle,CheckCircle2,Hourglass,IdCard,Landmark,Vote,Car,ExternalLink,ChevronRight,LayoutDashboard,Users,IndianRupee,Activity} from 'lucide-react';
 
 const services=[
- {id:'aadhaar',name:'Aadhaar',icon:IdCard,sub:['Aadhaar Update','Address Update','Mobile Update','Name Correction','DOB Correction','Download Aadhaar'],urls:['https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/'],fee:50,image:'/services/aadhaar.svg'},
- {id:'pan',name:'PAN Card',icon:Landmark,sub:['New PAN Application','PAN Correction','PAN Download'],urls:['https://www.pan.utiitsl.com/','https://www.pan.utiitsl.com/','https://www.incometax.gov.in/'],fee:100,image:'/services/pan.svg'},
- {id:'voter',name:'Voter Card',icon:Vote,sub:['New Voter Registration','Voter Correction','Download e-EPIC'],urls:['https://voters.eci.gov.in/','https://voters.eci.gov.in/','https://voters.eci.gov.in/'],fee:50,image:'/services/voter.svg'},
- {id:'dl',name:'Driving Licence',icon:Car,sub:['Learner Licence','DL Renewal','DL Services'],urls:['https://sarathi.parivahan.gov.in/','https://sarathi.parivahan.gov.in/','https://sarathi.parivahan.gov.in/'],fee:150,image:'/services/driving-licence.svg'}
+ {id:'aadhaar',name:'Aadhaar',icon:IdCard,sub:['Aadhaar Update','Address Update','Mobile Update','Name Correction','DOB Correction','Download Aadhaar'],urls:['https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/'],fee:50,image:'/services/aadhaar.png'},
+ {id:'pan',name:'PAN Card',icon:Landmark,sub:['New PAN Application','PAN Correction','PAN Download'],urls:['https://www.pan.utiitsl.com/','https://www.pan.utiitsl.com/','https://www.incometax.gov.in/'],fee:100,image:'/services/pan.webp'},
+ {id:'voter',name:'Voter Card',icon:Vote,sub:['New Voter Registration','Voter Correction','Download e-EPIC'],urls:['https://voters.eci.gov.in/','https://voters.eci.gov.in/','https://voters.eci.gov.in/'],fee:50,image:'/services/voter.png'},
+ {id:'dl',name:'Driving Licence',icon:Car,sub:['Learner Licence','DL Renewal','DL Services'],urls:['https://sarathi.parivahan.gov.in/','https://sarathi.parivahan.gov.in/','https://sarathi.parivahan.gov.in/'],fee:150,image:'/services/driving-licence.png'}
 ];
 const defaultUsers=[{username:'MASTER',name:'JOSHI JOY',role:'Master',mobile:'8074385845',email:'kandulayehoshuva84@gmail.com'},{username:'ADMIN',name:'Admin',role:'Admin',mobile:'',email:''},{username:'EMPLOYEE',name:'Employee',role:'Employee',mobile:'',email:''}];
 function seedUsers(){try{return JSON.parse(localStorage.getItem('mi_users')||'null')||defaultUsers}catch{return defaultUsers}}
