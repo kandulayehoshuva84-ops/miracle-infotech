@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340">
+<rect width="600" height="340" rx="28" fill="#f3f7ff"/>
+<rect x="24" y="24" width="552" height="292" rx="22" fill="#fff" stroke="#dbe5f3" stroke-width="3"/>
+<rect x="65" y="70" width="470" height="200" rx="18" fill="#eef4fc" stroke="#b9cbe3" stroke-width="3"/>
+<circle cx="115" cy="120" r="28" fill="#18365e"/>
+<path d="M98 128h34M103 116h24" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+<text x="165" y="115" font-family="Arial" font-size="22" font-weight="800" fill="#18365e">GOVERNMENT OF INDIA</text>
+<text x="165" y="148" font-family="Arial" font-size="29" font-weight="900" fill="#d71920">DRIVING LICENCE</text>
+<rect x="95" y="180" width="280" height="10" rx="5" fill="#c5d3e3"/>
+<rect x="95" y="204" width="210" height="10" rx="5" fill="#c5d3e3"/>
+<rect x="95" y="228" width="170" height="10" rx="5" fill="#c5d3e3"/>
+<path d="M415 222h72l-10-28h-43zM405 222h95" fill="none" stroke="#315b8d" stroke-width="6"/>
+<circle cx="425" cy="230" r="9" fill="#315b8d"/><circle cx="478" cy="230" r="9" fill="#315b8d"/>
+</svg>

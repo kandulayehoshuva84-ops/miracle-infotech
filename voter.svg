@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340">
+<rect width="600" height="340" rx="28" fill="#f3f7ff"/>
+<rect x="24" y="24" width="552" height="292" rx="22" fill="#fff" stroke="#dbe5f3" stroke-width="3"/>
+<circle cx="100" cy="100" r="34" fill="#18365e"/>
+<path d="M83 100l12 12 25-27" fill="none" stroke="#fff" stroke-width="7"/>
+<text x="155" y="92" font-family="Arial" font-size="23" font-weight="800" fill="#18365e">ELECTION COMMISSION</text>
+<text x="155" y="125" font-family="Arial" font-size="29" font-weight="900" fill="#d71920">VOTER CARD</text>
+<rect x="75" y="165" width="450" height="90" rx="12" fill="#eef4fc"/>
+<circle cx="125" cy="210" r="28" fill="#c3d0df"/>
+<circle cx="125" cy="202" r="9" fill="#879bb2"/>
+<path d="M107 228c7-16 29-16 36 0" fill="#879bb2"/>
+<rect x="175" y="192" width="220" height="10" rx="5" fill="#c5d3e3"/>
+<rect x="175" y="215" width="160" height="10" rx="5" fill="#c5d3e3"/>
+</svg>
