@@ -22,7 +22,7 @@ const services=[
   urls:[
    'https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/',
    'https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/',
-   'https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/'
+   'https://myaadhaar.uidai.gov.in/','https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en'
   ],
   fee:50,
   image:'/services/aadhaar.png'
@@ -33,9 +33,9 @@ const services=[
   icon:Landmark,
   sub:['New PAN Application','PAN Correction','PAN Download'],
   urls:[
-   'https://www.pan.utiitsl.com/',
-   'https://www.pan.utiitsl.com/',
-   'https://www.incometax.gov.in/'
+   'https://www.psaonline.utiitsl.com/psapanservices/forms/login.html/loginHome',
+   'https://www.psaonline.utiitsl.com/psapanservices/forms/login.html/loginHome',
+   'https://www.psaonline.utiitsl.com/psapanservices/forms/login.html/loginHome'
   ],
   fee:100,
   image:'/services/pan.webp'
