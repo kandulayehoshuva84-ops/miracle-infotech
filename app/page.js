@@ -1467,8 +1467,19 @@ function AppsTable({
 
       <div>
        <b>{a.customer_name}</b>
-       <small>{a.mobile_number}</small>
-      </div>
+<a
+  href={`https://web.whatsapp.com/send?phone=91${String(a.mobile_number).replace(/\D/g,'')}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    color:'#16803a',
+    cursor:'pointer',
+    textDecoration:'none',
+    fontWeight:600
+  }}
+>
+  {a.mobile_number}
+</a>      </div>
 
       <div>
        <b>{a.work_name}</b>
@@ -1504,6 +1515,7 @@ function AppsTable({
               :x
             )
            );
+alert(`Status updated successfully!\n\nCustomer: ${a.customer_name}\nNew Status: ${status}`);
           }}
          >
           <option>RECEIVED</option>
