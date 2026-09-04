@@ -705,7 +705,7 @@ export default function Home(){
    a.mobile_number+
    a.work_name+
    (a.subwork_name||'')
-  )
+  (a.status||'')
    .toLowerCase()
    .includes(search.toLowerCase())
  );
@@ -883,9 +883,20 @@ export default function Home(){
          ['Completed',stats.completed,CheckCircle2]
         ].map(([n,v,I])=>(
          <div
-          className="stat"
-          key={n}
-         >
+  className="stat"
+  key={n}
+  onClick={()=>{
+    if(n==='Pending'){
+      setSection('applications');
+      setSearch('PENDING');
+    }
+  }}
+  style={
+    n==='Pending'
+      ?{cursor:'pointer'}
+      :undefined
+  }
+>
           <div className="statIcon">
            <I/>
           </div>
