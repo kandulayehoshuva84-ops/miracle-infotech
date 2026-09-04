@@ -704,7 +704,7 @@ export default function Home(){
    a.customer_name+
    a.mobile_number+
    a.work_name+
-   (a.subwork_name||'')
+   (a.subwork_name||'')+
   (a.status||'')
    .toLowerCase()
    .includes(search.toLowerCase())
