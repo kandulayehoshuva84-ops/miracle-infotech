@@ -708,7 +708,7 @@ export default function Home(){
   (a.status||'')
    .toLowerCase()
    .includes(search.toLowerCase())
- );
+ ));
 
  const selected=service;
  const subs=selected?.sub||[];  return (
