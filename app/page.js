@@ -349,15 +349,15 @@ export default function Home(){
   const {data,error}=await supabase
    .from('applications')
    .insert({
-    customer_name:form.customer.trim(),
-    mobile_number:form.mobile.trim(),
-    date_of_birth:form.dateOfBirth,
-    work_name:form.work,
-    subwork_name:form.sub,
-    service_fee:Number(form.fee||0),
-    status:'RECEIVED',
-    created_by:user.id
-   })
+ customer_name:form.customer.trim(),
+ mobile:form.mobile.trim(),
+ date_of_birth:form.dateOfBirth,
+ service:form.work,
+ subwork:form.sub,
+ service_fee:Number(form.fee||0),
+ status:'RECEIVED',
+ created_by:user.id
+})
    .select()
    .single();
 
