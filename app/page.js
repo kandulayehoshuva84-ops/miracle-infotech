@@ -91,12 +91,13 @@ export default function Home(){
  const [now,setNow]=useState(new Date());
  const [idle,setIdle]=useState(0);
  const [form,setForm]=useState({
-  customer:'',
-  mobile:'',
-  work:'',
-  sub:'',
-  fee:''
- });
+ customer:'',
+ mobile:'',
+ dateOfBirth:'',
+ work:'',
+ sub:'',
+ fee:''
+});
  const [msg,setMsg]=useState('');
  const [userForm,setUserForm]=useState({
   username:'',
@@ -342,7 +343,7 @@ export default function Home(){
   e.preventDefault();
   setMsg('');
 
-  if(!form.customer||!form.mobile||!form.work||!form.sub)
+  if(!form.customer||!form.mobile||!form.dateOfBirth||!form.work||!form.sub)
    return setMsg('Please fill all application fields.');
 
   const {data,error}=await supabase
@@ -350,6 +351,7 @@ export default function Home(){
    .insert({
     customer_name:form.customer.trim(),
     mobile_number:form.mobile.trim(),
+    date_of_birth:form.dateOfBirth,
     work_name:form.work,
     subwork_name:form.sub,
     service_fee:Number(form.fee||0),
@@ -368,11 +370,11 @@ export default function Home(){
 
   setForm({
    customer:'',
-   mobile:'',
-   work:'',
-   sub:'',
-   fee:''
-  });
+mobile:'',
+dateOfBirth:'',
+work:'',
+sub:'',
+fee:''
 
   setMsg('Application created successfully.');
   setSection('dashboard');
@@ -1065,7 +1067,20 @@ export default function Home(){
           }
          />
         </label>
+<label>
+ Date of Birth
 
+ <input
+  type="date"
+  value={form.dateOfBirth}
+  onChange={e=>
+   setForm({
+    ...form,
+    dateOfBirth:e.target.value
+   })
+  }
+ />
+</label>
         <label>
          Work
 
@@ -1462,12 +1477,13 @@ function AppsTable({
   <div className="tableCard">
 
    <div className="tableHead">
-    <span>Customer</span>
-    <span>Work / Sub-work</span>
-    <span>Fee</span>
-    <span>Status</span>
-    <span>Created</span>
-   </div>
+ <span>Application Number</span>
+ <span>Customer / DOB</span>
+ <span>Work / Sub-work</span>
+ <span>Fee</span>
+ <span>Status</span>
+ <span>Created</span>
+</div>
 
    {data.length
     ?data.map(a=>(
@@ -1475,9 +1491,36 @@ function AppsTable({
       className="row"
       key={a.id}
      >
-
+<div className="applicationNumber">
+ <b>{a.application_number || '—'}</b>
+</div>
       <div>
-       <b>{a.customer_name}</b>
+      <div>
+ <b>{a.customer_name}</b>
+
+ <small>
+  DOB: {a.date_of_birth
+   ? new Date(
+      a.date_of_birth + 'T00:00:00'
+     ).toLocaleDateString('en-IN')
+   : '—'
+  }
+ </small>
+
+ <a
+  href={`https://web.whatsapp.com/send?phone=91${String(a.mobile_number).replace(/\D/g,'')}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+   color:'#16803a',
+   cursor:'pointer',
+   textDecoration:'none',
+   fontWeight:600
+  }}
+ >
+  {a.mobile_number}
+ </a>
+</div>
 <a
   href={`https://web.whatsapp.com/send?phone=91${String(a.mobile_number).replace(/\D/g,'')}`}
   target="_blank"
