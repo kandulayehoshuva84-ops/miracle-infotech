@@ -3,7 +3,7 @@
 import {useEffect,useMemo,useState} from 'react';
 import {createClient} from '@supabase/supabase-js';
 import {
- Search,LogOut,Clock3,ShieldCheck,Plus,FileEdit,Inbox,
+ Search,LogOut,Clock3,ShieldCheck,Plus,FileEdit,Inbox,Trash2,
  LoaderCircle,CheckCircle2,Hourglass,IdCard,Landmark,Vote,Car,
  ExternalLink,ChevronRight,LayoutDashboard,Users,Activity
 } from 'lucide-react';
@@ -1485,6 +1485,7 @@ function AppsTable({
   <span>Fee</span>
   <span>Status</span>
   <span>Created</span>
+  <span>Actions</span>
 </div>
 
 {data.length
@@ -1639,6 +1640,56 @@ function AppsTable({
         </div>
       );
     })
+<button
+  type="button"
+  onClick={async () => {
+    const ok = window.confirm(
+      `Delete this application?\n\nApplication: ${
+        a.application_no ||
+        a.application_number ||
+        a.id
+      }\nCustomer: ${a.customer_name}`
+    );
+
+    if (!ok) return;
+
+    const { error } = await supabase
+      .from('applications')
+      .delete()
+      .eq('id', a.id);
+
+    if (error) {
+      alert(
+        'Unable to delete application.\n\n' +
+        error.message
+      );
+      return;
+    }
+
+    setApps(prev =>
+      prev.filter(x => x.id !== a.id)
+    );
+
+    alert('Application deleted successfully.');
+  }}
+  style={{
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '5px',
+    marginTop: '6px',
+    padding: '7px 10px',
+    border: '1px solid #f1caca',
+    borderRadius: '8px',
+    background: '#fff5f5',
+    color: '#c62828',
+    fontSize: '11px',
+    fontWeight: 700,
+    cursor: 'pointer'
+  }}
+>
+  <Trash2 size={14} />
+  Delete
+</button>
   : (
     <div className="empty">
       No applications yet.
