@@ -1478,119 +1478,173 @@ function AppsTable({
   <div className="tableCard">
 
    <div className="tableHead">
- <span>Application Number</span>
- <span>Customer / DOB</span>
- <span>Work / Sub-work</span>
- <span>Fee</span>
- <span>Status</span>
- <span>Created</span>
+  <span>Application Number</span>
+  <span>Customer / DOB</span>
+  <span>Mobile Number</span>
+  <span>Work / Sub-work</span>
+  <span>Fee</span>
+  <span>Status</span>
+  <span>Created</span>
 </div>
 
-   {data.length
-    ?data.map(a=>(
-     <div
-      className="row"
-      key={a.id}
-     >
-<div className="applicationNumber">
- <b>{a.application_number || '—'}</b>
-</div>
-      <div>
-      <div>
- <b>{a.customer_name}</b>
+{data.length
+  ? data.map(a => {
 
- <small>
-  DOB: {a.date_of_birth
-   ? new Date(
-      a.date_of_birth + 'T00:00:00'
-     ).toLocaleDateString('en-IN')
-   : '—'
-  }
- </small>
+      const appNumber =
+        a.application_no ||
+        a.application_number ||
+        a.id;
 
- <a
-  href={`https://web.whatsapp.com/send?phone=91${String(a.mobile_number).replace(/\D/g,'')}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-   color:'#16803a',
-   cursor:'pointer',
-   textDecoration:'none',
-   fontWeight:600
-  }}
- >
-  {a.mobile_number}
- </a>
-</div>
-<a
-  href={`https://web.whatsapp.com/send?phone=91${String(a.mobile_number).replace(/\D/g,'')}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    color:'#16803a',
-    cursor:'pointer',
-    textDecoration:'none',
-    fontWeight:600
-  }}
->
-  {a.mobile_number}
-</a>      </div>
+      const mobile =
+        a.mobile ||
+        a.mobile_number ||
+        '';
 
-      <div>
-       <b>{a.work_name}</b>
-       <small>{a.subwork_name}</small>
-      </div>
+      const work =
+        a.service ||
+        a.work_name ||
+        '';
 
-      <div>
-       ₹{a.service_fee}
-      </div>
+      const subwork =
+        a.subwork ||
+        a.subwork_name ||
+        '';
 
-      <div>
+      return (
+        <div
+          className="row"
+          key={a.id}
+        >
 
-       {editable
-        ?<select
-          value={a.status}
-          onChange={async e=>{
-           const status=e.target.value;
+          {/* APPLICATION NUMBER */}
+          <div className="applicationNumber">
+            <b>
+              {String(appNumber).startsWith('MI-')
+                ? appNumber
+                : `MI-${String(appNumber).padStart(6, '0')}`}
+            </b>
+          </div>
 
-           const {error}=
-            await supabase
-             .from('applications')
-             .update({status})
-             .eq('id',a.id);
+          {/* CUSTOMER / DOB */}
+          <div>
+            <div>
+              <b>{a.customer_name}</b>
 
-           if(error){
-            return;
-           }
+              <small>
+                DOB:{' '}
+                {a.date_of_birth
+                  ? new Date(
+                      a.date_of_birth + 'T00:00:00'
+                    ).toLocaleDateString('en-IN')
+                  : '—'}
+              </small>
+            </div>
+          </div>
 
-           setApps(prev=>
-            prev.map(x=>
-             x.id===a.id
-              ?{...x,status}
-              :x
-            )
-           );
-alert(`Status updated successfully!\n\nCustomer: ${a.customer_name}\nNew Status: ${status}`);
-          }}
-         >
-          <option>RECEIVED</option>
-          <option>PROCESSING</option>
-          <option>PENDING</option>
-          <option>COMPLETED</option>
-          <option>CANCELLED</option>
-         </select>
+          {/* MOBILE NUMBER - ONLY ONCE */}
+          <div>
+            <a
+              href={`https://web.whatsapp.com/send?phone=91${String(
+                mobile
+              ).replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color:'#16803a',
+                cursor:'pointer',
+                textDecoration:'none',
+                fontWeight:600
+              }}
+            >
+              {mobile || '—'}
+            </a>
+          </div>
 
-        :<span
-          className={
-           'pill '+
-           String(a.status).toLowerCase()
-          }
-         >
-          {a.status}
-         </span>
-       }
+          {/* WORK / SUB-WORK */}
+          <div>
+            <b>{work || '—'}</b>
+            <small>{subwork || '—'}</small>
+          </div>
 
-      </div>
+          {/* FEE */}
+          <div>
+            ₹{a.service_fee || 0}
+          </div>
+
+          {/* STATUS */}
+          <div>
+
+            {editable
+              ? (
+                <select
+                  value={a.status}
+                  onChange={async e => {
+
+                    const status = e.target.value;
+
+                    const {error} =
+                      await supabase
+                        .from('applications')
+                        .update({status})
+                        .eq('id', a.id);
+
+                    if(error){
+                      setMsg(error.message);
+                      return;
+                    }
+
+                    setApps(prev =>
+                      prev.map(x =>
+                        x.id === a.id
+                          ? {...x, status}
+                          : x
+                      )
+                    );
+
+                    alert(
+                      `Status updated successfully!\n\nCustomer: ${a.customer_name}\nNew Status: ${status}`
+                    );
+                  }}
+                >
+                  <option>RECEIVED</option>
+                  <option>PROCESSING</option>
+                  <option>PENDING</option>
+                  <option>COMPLETED</option>
+                  <option>CANCELLED</option>
+                </select>
+              )
+              : (
+                <span
+                  className={
+                    'pill ' +
+                    String(a.status).toLowerCase()
+                  }
+                >
+                  {a.status}
+                </span>
+              )
+            }
+
+          </div>
+
+          {/* CREATED */}
+          <small>
+            {a.created_at
+              ? new Date(
+                  a.created_at
+                ).toLocaleString('en-IN')
+              : '—'}
+          </small>
+
+        </div>
+      );
+    })
+  : (
+    <div className="empty">
+      No applications yet.
+    </div>
+  )
+}
 
       <small>
        {a.created_at
