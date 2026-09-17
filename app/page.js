@@ -1646,22 +1646,7 @@ function AppsTable({
   )
 }
 
-      <small>
-       {a.created_at
-        ?new Date(
-          a.created_at
-         ).toLocaleString('en-IN')
-        :'—'
-       }
-      </small>
-
-     </div>
-    ))
-    :<div className="empty">
-      No applications yet.
-     </div>
-   }
-
+      
   </div>
  );
 }
