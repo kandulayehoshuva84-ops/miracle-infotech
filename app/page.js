@@ -368,17 +368,17 @@ export default function Home(){
 
   setApps(prev=>[data,...prev]);
 
-  setForm({
-   customer:'',
-mobile:'',
-dateOfBirth:'',
-work:'',
-sub:'',
-fee:''
+setForm({
+ customer:'',
+ mobile:'',
+ dateOfBirth:'',
+ work:'',
+ sub:'',
+ fee:''
+});
 
-  setMsg('Application created successfully.');
-  setSection('dashboard');
- }
+setMsg('Application created successfully.');
+setSection('dashboard');
 
  async function saveUser(e){
   e.preventDefault();
