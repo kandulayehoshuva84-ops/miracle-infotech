@@ -1629,17 +1629,14 @@ function AppsTable({
           </div>
 
           {/* CREATED */}
-          <small>
-            {a.created_at
-              ? new Date(
-                  a.created_at
-                ).toLocaleString('en-IN')
-              : '—'}
-          </small>
+<small>
+  {a.created_at
+    ? new Date(
+        a.created_at
+      ).toLocaleString('en-IN')
+    : '—'}
+</small>
 
-        </div>
-      );
-    })
 <button
   type="button"
   onClick={async () => {
@@ -1690,6 +1687,11 @@ function AppsTable({
   <Trash2 size={14} />
   Delete
 </button>
+
+        </div>
+      );
+    })
+
   : (
     <div className="empty">
       No applications yet.
