@@ -379,7 +379,8 @@ setForm({
 
 setMsg('Application created successfully.');
 setSection('dashboard');
-
+}
+ 
  async function saveUser(e){
   e.preventDefault();
   setMsg('');
